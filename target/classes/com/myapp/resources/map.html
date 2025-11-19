@@ -1,3 +1,6 @@
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -134,7 +137,152 @@
       maxZoom:19,
       attribution:'© OpenStreetMap'
     }).addTo(mapElement);
+=======
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>OSRM Route Planner</title>
+  <link rel='stylesheet' href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css' />
+  <script src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; }
+    #map { width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <div id='map'></div>
+  <script>
+=======
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>OSRM Route Planner</title>
+  <link rel='stylesheet' href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css' />
+  <script src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; }
+    #map { width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <div id='map'></div>
+  <script>
+>>>>>>> Stashed changes
+=======
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>OSRM Route Planner</title>
+  <link rel='stylesheet' href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css' />
+  <script src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; }
+    #map { width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <div id='map'></div>
+  <script>
+>>>>>>> Stashed changes
+    var mapContainer = document.getElementById('map');
+    var _tileLayer;
+    function createMap() {
+      if (!mapContainer) mapContainer = document.getElementById('map');
+      window._mapInstance = L.map('map').setView([38.736946, -9.142685], 13);
+      _tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: ' OpenStreetMap contributors',
+        maxZoom: 19
+      }).addTo(window._mapInstance);
+      attachHandlers();
+    }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
 
+    function attachHandlers() {
+      window._mapInstance.off();
+      window._mapInstance.on('click', function(e) {
+        if (markers.length >= 2) {
+          markers.forEach(m => window._mapInstance.removeLayer(m));
+          markers = [];
+          if (routeLayer) window._mapInstance.removeLayer(routeLayer);
+        }
+        var marker = L.marker(e.latlng).addTo(window._mapInstance);
+        markers.push(marker);
+        if (markers.length === 2) {
+          var start = markers[0].getLatLng();
+          var end = markers[1].getLatLng();
+          var url = 'https://router.project-osrm.org/route/v1/driving/' + start.lng + ',' + start.lat + ';' + end.lng + ',' + end.lat + '?overview=full&geometries=geojson';
+          fetch(url).then(r => r.json()).then(d => {
+            if (d.routes && d.routes.length > 0) {
+              routeLayer = L.geoJSON(d.routes[0].geometry).addTo(window._mapInstance);
+              window._mapInstance.fitBounds(routeLayer.getBounds());
+            }
+          }).catch(e => console.error(e));
+        }
+      });
+    }
+>>>>>>> Stashed changes
+
+    function attachHandlers() {
+      window._mapInstance.off();
+      window._mapInstance.on('click', function(e) {
+        if (markers.length >= 2) {
+          markers.forEach(m => window._mapInstance.removeLayer(m));
+          markers = [];
+          if (routeLayer) window._mapInstance.removeLayer(routeLayer);
+        }
+        var marker = L.marker(e.latlng).addTo(window._mapInstance);
+        markers.push(marker);
+        if (markers.length === 2) {
+          var start = markers[0].getLatLng();
+          var end = markers[1].getLatLng();
+          var url = 'https://router.project-osrm.org/route/v1/driving/' + start.lng + ',' + start.lat + ';' + end.lng + ',' + end.lat + '?overview=full&geometries=geojson';
+          fetch(url).then(r => r.json()).then(d => {
+            if (d.routes && d.routes.length > 0) {
+              routeLayer = L.geoJSON(d.routes[0].geometry).addTo(window._mapInstance);
+              window._mapInstance.fitBounds(routeLayer.getBounds());
+            }
+          }).catch(e => console.error(e));
+        }
+      });
+    }
+>>>>>>> Stashed changes
+
+<<<<<<< Updated upstream
+    function attachHandlers() {
+      window._mapInstance.off();
+      window._mapInstance.on('click', function(e) {
+        if (markers.length >= 2) {
+          markers.forEach(m => window._mapInstance.removeLayer(m));
+          markers = [];
+          if (routeLayer) window._mapInstance.removeLayer(routeLayer);
+        }
+        var marker = L.marker(e.latlng).addTo(window._mapInstance);
+        markers.push(marker);
+        if (markers.length === 2) {
+          var start = markers[0].getLatLng();
+          var end = markers[1].getLatLng();
+          var url = 'https://router.project-osrm.org/route/v1/driving/' + start.lng + ',' + start.lat + ';' + end.lng + ',' + end.lat + '?overview=full&geometries=geojson';
+          fetch(url).then(r => r.json()).then(d => {
+            if (d.routes && d.routes.length > 0) {
+              routeLayer = L.geoJSON(d.routes[0].geometry).addTo(window._mapInstance);
+              window._mapInstance.fitBounds(routeLayer.getBounds());
+            }
+          }).catch(e => console.error(e));
+        }
+      });
+    }
+>>>>>>> Stashed changes
+
+<<<<<<< Updated upstream
     // ESTADO
     const state = {
       points: [],
@@ -142,6 +290,7 @@
       transportMode: 'driving'
     };
 
+<<<<<<< Updated upstream
     // DOM
     const originInput = document.getElementById('originInput');
     const destinosContainer = document.getElementById('destinosContainer');
@@ -409,6 +558,139 @@
           }
         });
       }
+=======
+    window.reinitMap = function() {
+      if (window._mapInstance) {
+        try { window._mapInstance.invalidateSize(true); } catch(e){}
+        // quick hide/show to force browser redraw
+        mapContainer.style.display = 'none';
+        setTimeout(function() {
+          mapContainer.style.display = 'block';
+          try { window._mapInstance.invalidateSize(true); } catch(e){}
+        }, 20);
+      }
+    };
+
+    window.recreateMap = function() {
+      try {
+        var old = document.getElementById('map');
+        var parent = old.parentNode || document.body;
+        // remove existing map instance if any
+        if (window._mapInstance) {
+          try { window._mapInstance.remove(); } catch(e){}
+          window._mapInstance = null;
+        }
+        // remove old container
+        if (old && old.parentNode) old.parentNode.removeChild(old);
+        // create new container
+        var nd = document.createElement('div');
+        nd.id = 'map';
+        nd.style.width = '100%';
+        nd.style.height = '100%';
+        parent.appendChild(nd);
+        mapContainer = nd;
+        // recreate
+        createMap();
+        // small extra invalidation
+        setTimeout(function() { try { window._mapInstance.invalidateSize(true); } catch(e){} }, 50);
+      } catch(e) { console.error('recreateMap error', e); }
+    };
+
+    // create first map
+    createMap();
+
+=======
+    window.reinitMap = function() {
+      if (window._mapInstance) {
+        try { window._mapInstance.invalidateSize(true); } catch(e){}
+        // quick hide/show to force browser redraw
+        mapContainer.style.display = 'none';
+        setTimeout(function() {
+          mapContainer.style.display = 'block';
+          try { window._mapInstance.invalidateSize(true); } catch(e){}
+        }, 20);
+      }
+    };
+
+    window.recreateMap = function() {
+      try {
+        var old = document.getElementById('map');
+        var parent = old.parentNode || document.body;
+        // remove existing map instance if any
+        if (window._mapInstance) {
+          try { window._mapInstance.remove(); } catch(e){}
+          window._mapInstance = null;
+        }
+        // remove old container
+        if (old && old.parentNode) old.parentNode.removeChild(old);
+        // create new container
+        var nd = document.createElement('div');
+        nd.id = 'map';
+        nd.style.width = '100%';
+        nd.style.height = '100%';
+        parent.appendChild(nd);
+        mapContainer = nd;
+        // recreate
+        createMap();
+        // small extra invalidation
+        setTimeout(function() { try { window._mapInstance.invalidateSize(true); } catch(e){} }, 50);
+      } catch(e) { console.error('recreateMap error', e); }
+    };
+
+    // create first map
+    createMap();
+
+>>>>>>> Stashed changes
+=======
+    window.reinitMap = function() {
+      if (window._mapInstance) {
+        try { window._mapInstance.invalidateSize(true); } catch(e){}
+        // quick hide/show to force browser redraw
+        mapContainer.style.display = 'none';
+        setTimeout(function() {
+          mapContainer.style.display = 'block';
+          try { window._mapInstance.invalidateSize(true); } catch(e){}
+        }, 20);
+      }
+    };
+
+    window.recreateMap = function() {
+      try {
+        var old = document.getElementById('map');
+        var parent = old.parentNode || document.body;
+        // remove existing map instance if any
+        if (window._mapInstance) {
+          try { window._mapInstance.remove(); } catch(e){}
+          window._mapInstance = null;
+        }
+        // remove old container
+        if (old && old.parentNode) old.parentNode.removeChild(old);
+        // create new container
+        var nd = document.createElement('div');
+        nd.id = 'map';
+        nd.style.width = '100%';
+        nd.style.height = '100%';
+        parent.appendChild(nd);
+        mapContainer = nd;
+        // recreate
+        createMap();
+        // small extra invalidation
+        setTimeout(function() { try { window._mapInstance.invalidateSize(true); } catch(e){} }, 50);
+      } catch(e) { console.error('recreateMap error', e); }
+    };
+
+    // create first map
+    createMap();
+
+>>>>>>> Stashed changes
+    // try multiple invalidations to coax WebView into correct rendering
+    [0, 50, 100, 150, 250, 400, 600, 800, 1000].forEach(function(delay) {
+      setTimeout(function() {
+        try { if (window._mapInstance) window._mapInstance.invalidateSize(true); } catch(e){}
+      }, delay);
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
     });
 
     // Atualizar visibilidade dos botões remover
@@ -490,6 +772,8 @@
       } catch (e) {
         showAlert('❌ Erro ao calcular rota: ' + e.message, 'error');
       }
+=======
+>>>>>>> Stashed changes
     });
 
     // MUDAR MODO DE TRANSPORTE (Botões)
@@ -551,6 +835,8 @@
           }
         }
       }
+=======
+>>>>>>> Stashed changes
     });
 
     // Invalidar tamanho do mapa (WebView fix)

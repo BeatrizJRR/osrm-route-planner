@@ -3,7 +3,10 @@ com\myapp\model\Point.class
 com\myapp\model\TransportMode.class
 com\myapp\model\Route.class
 com\myapp\ui\MapViewer.class
+com\myapp\api\NominatimClient.class
 com\myapp\model\POI.class
 com\myapp\model\App.class
 com\myapp\api\OSRMClient$1.class
 com\myapp\api\OverpassClient.class
+com\myapp\resources\map.html
+com\myapp\model\App$1.class
