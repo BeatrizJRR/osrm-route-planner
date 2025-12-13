@@ -37,6 +37,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          external_repository: FredericoPeresCorreia/osrm-route-planner
           publish_dir: ./target/site
           publish_branch: gh-pages
           force_orphan: true
