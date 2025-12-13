@@ -1,0 +1,39 @@
+name: Publish Quality Report
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - name: Build reports
+        run: mvn -B clean test jacoco:report checkstyle:checkstyle pmd:pmd surefire-report:report
+
+      - name: Copy custom quality report
+        run: |
+          mkdir -p target/site
+          cp src/site/resources/quality-report.html target/site/quality-report.html
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/site
+          publish_branch: gh-pages
+          force_orphan: true
